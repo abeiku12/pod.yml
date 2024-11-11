@@ -40,7 +40,6 @@ spec:
   containers:
     - name: my-container
       image: nginx:latest
-
 Explanation
 apiVersion: Defines the API version (v1 for Pods).
 kind: Specifies the resource type, Pod.
@@ -65,8 +64,9 @@ metadata:
   annotations:
     owner: team-a
 
+---
 
-Containers
+## Containers
 The containers field is a list of container specifications for the Pod. Each container should have a unique name, an image, and any necessary configurations such as ports, resources, and environment variables.
 
 name: Name of the container.
@@ -92,7 +92,7 @@ containers:
         memory: "128Mi"
         cpu: "500m"
 
-Volumes
+## Volumes
 Volumes allow data to persist across container restarts and can be shared among containers in a Pod.
 
 Example
@@ -101,7 +101,7 @@ volumes:
   - name: storage-volume
     emptyDir: {}
 
-Restart Policy
+## Restart Policy
 Defines when Kubernetes should restart a container:
 
 Always: Always restart (default).
@@ -110,7 +110,7 @@ Never: Do not restart the container.
 Example
 restartPolicy: OnFailure
 
-Affinity and Node Selector
+## Affinity and Node Selector
 Controls where Pods are scheduled within the cluster.
 
 nodeSelector: Assigns Pods to nodes with matching labels.
@@ -120,7 +120,7 @@ Example
 nodeSelector:
   disktype: ssd
 
-Tolerations
+## Tolerations
 Tolerations allow Pods to be scheduled on nodes with matching taints, defining rules for which nodes the Pod can tolerate.
 
 Example
@@ -130,7 +130,7 @@ tolerations:
     value: "example-value"
     effect: "NoSchedule"
 
-Lifecycle Hooks
+## Lifecycle Hooks
 Lifecycle hooks allow you to trigger actions at different stages of the container lifecycle, such as postStart or preStop.
 
 Example
@@ -140,7 +140,7 @@ lifecycle:
     exec:
       command: ["/bin/sh", "-c", "echo Goodbye"]
 
-Probes
+## Probes
 Liveness and Readiness probes are used to check the health and readiness of containers:
 
 livenessProbe: Restarts containers that become unresponsive.
@@ -154,7 +154,7 @@ livenessProbe:
   initialDelaySeconds: 3
   periodSeconds: 5
 
-Examples
+## Examples
 Example 1: Basic Pod
 
 apiVersion: v1
@@ -168,7 +168,7 @@ spec:
       ports:
         - containerPort: 80
 
-Example 2: Pod with Multi-Container Setup
+## Example 2: Pod with Multi-Container Setup
 apiVersion: v1
 kind: Pod
 metadata:
@@ -181,7 +181,7 @@ spec:
       image: busybox
       args: ["sh", "-c", "tail -f /var/log/app.log"]
 
-Example 3: Pod with Resource Limits and Environment Variables
+## Example 3: Pod with Resource Limits and Environment Variables
 
 apiVersion: v1
 kind: Pod
@@ -202,7 +202,7 @@ spec:
         - name: ENVIRONMENT
           value: production
 
-Useful Commands
+## Useful Commands
 Here are some helpful kubectl commands to manage Pods:
 
 Create a Pod: kubectl apply -f pod.yaml
@@ -212,15 +212,7 @@ List all Pods: kubectl get pods
 Get container logs: kubectl logs <pod-name> -c <container-name>
 Execute a command in a container: kubectl exec -it <pod-name> -- <command>
 
-Useful Commands
-Here are some helpful kubectl commands to manage Pods:
 
-Create a Pod: kubectl apply -f pod.yaml
-Delete a Pod: kubectl delete pod <pod-name>
-Get Pod details: kubectl describe pod <pod-name>
-List all Pods: kubectl get pods
-Get container logs: kubectl logs <pod-name> -c <container-name>
-Execute a command in a container: kubectl exec -it <pod-name> -- <command>
 
 
 
