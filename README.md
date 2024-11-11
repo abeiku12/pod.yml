@@ -212,7 +212,11 @@ List all Pods: kubectl get pods
 Get container logs: kubectl logs <pod-name> -c <container-name>
 Execute a command in a container: kubectl exec -it <pod-name> -- <command>
 
+##Contributing
+Feel free to submit issues or pull requests to enhance the examples or add new documentation. Contributions are welcome!
 
+##License
+This project is licensed under the MIT License.
 
 
 
